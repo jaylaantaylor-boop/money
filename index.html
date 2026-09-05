@@ -101,5 +101,14 @@ input[type="text"]:focus,input[type="number"]:focus,input[type="date"]:focus,sel
   <nav class="nav" id="nav"></nav>
 </div>
 <script type="module" src="./app.js"></script>
+<script>
+/* money/sw.js and manifest.json have both been here since August; the worker
+   was simply never registered, so the app has had no offline support at all. */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("./sw.js").catch(function(){});
+  });
+}
+</script>
 </body>
 </html>
